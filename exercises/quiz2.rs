@@ -20,12 +20,12 @@
 //
 // No hints this time!
 
-// I AM NOT DONE
+
 
 pub enum Command {
     Uppercase,
     Trim,
-    Append(usize),
+    Append(usize),  //unsigned size，size取决于计算机位数
 }
 
 mod my_module {
@@ -42,10 +42,14 @@ mod my_module {
                     output.push(string.to_uppercase());
                 }
                 Command::Trim => {
-                    output.push(string.trim());
+                    output.push(string.trim().to_string());
                 }
-                Command::Append(value) => {
-                    output.push(string.repeat(*value))
+                Command::Append(n) => {
+                   let mut s=string.clone();
+                   for _ in 0..*n{
+                        s.push_str("bar");
+                   }
+                   output.push(s);
                 }
             }
         }
@@ -56,7 +60,7 @@ mod my_module {
 #[cfg(test)]
 mod tests {
     // TODO: What do we need to import to have `transformer` in scope?
-    use my_module::transformer;
+    use super::my_module::transformer;
     use super::Command;
 
     #[test]
