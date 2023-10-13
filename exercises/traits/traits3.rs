@@ -14,9 +14,6 @@ pub trait Licensed {
     }
 }
 
-pub trait Licensed {
-    fn licensing_info(&self) -> String;
-}
 
 struct SomeSoftware {
     version_number: i32,
